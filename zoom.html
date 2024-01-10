@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+    #zoom-container {
+      background: url('images/home-bg.jpg') no-repeat center center;
+      background-size: cover;
+      color: #000000;
+      display: flex;
+      align-items: left;
+      justify-content: center;
+      height: 100vh;
+    }
+    #zoom-image {
+      transition: transform 3.0s ease-in-out;
+    }
+    #zoom-image:hover {
+      transform: scale(100); /* Adjust the scale factor as needed */
+    }
+  </style>
+</head>
+<body>
+
+<div id="zoom-container">
+  <img id="zoom-image" src="images/home-bg.jpg" alt="background">
+</div>
+
+<script>
+
+
+</script>
+
+</body>
+</html>
