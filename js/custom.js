@@ -12,9 +12,40 @@ $('.iso-box-section a').nivoLightbox({
         effect: 'fadeScale',
     });
 
+function bindToButtom() {
+    const button = document.querySelectorAll('#home .btn.btn-default.btn-lg')[0]
+    button.addEventListener("click", (event)=> {
+        console.log("Button: " + this)
+        const image = document.getElementById('zoom-image')
+        image.classList.add('zoom-image-clicked');
+        const container = document.querySelectorAll('#home .container')[1]
+        container.setAttribute("style", "display: none")
+    })
+    document.querySelectorAll('section').
+     forEach((element) => {
+        element.setAttribute("style", "display: none")
+     })
+    document.querySelectorAll('footer').
+     forEach((element) => {
+        element.setAttribute("style", "display: none")
+     })
+    document.querySelectorAll('navbar').
+     forEach((element) => {
+        element.setAttribute("style", "display: none")
+     })
+     const section = document.getElementById('home')
+     section.setAttribute("style", "display: block")
+}
+
+function scrollToTop() {
+    document.documentElement.scrollTop = 0; // For modern browsers
+    document.body.scrollTop = 0; // For older browsers
+}
+
 // ISOTOPE FILTER
 jQuery(document).ready(function($){
-
+    bindToButtom()
+    scrollToTop()
 	if ( $('.iso-box-wrapper').length > 0 ) { 
 
 	    var $container 	= $('.iso-box-wrapper'), 
