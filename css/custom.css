@@ -49,6 +49,9 @@ body {
 }
 
 .overlay-div2 {
+  width: 100%; /* Set the image width to 100% of its container */
+  align-items: center;
+  justify-content: center;
     /* background-color: rgba(0, 0, 255, 0.5); /* Blue with 50% opacity */
     /* Other styles for the second overlay div */
 }
