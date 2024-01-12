@@ -27,7 +27,7 @@ body {
   justify-content: center;
 }
 #zoom-image {
-  transition: transform 5.0s ease-in-out;
+  transition: transform 5.0s cubic-bezier(0.9, 0.01, 0.9, 0.0001); /* cubic-bezier(0.55, 0.055, 0.675, 0.19) */
 }
 .zoom-image-clicked {
   transform: scale(100); /* Adjust the scale factor as needed */
