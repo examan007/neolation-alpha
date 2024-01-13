@@ -27,7 +27,7 @@ body {
   justify-content: center;
 }
 #zoom-image {
-  transition: transform 5.0s cubic-bezier(0.9, 0.01, 0.9, 0.0001); /* cubic-bezier(0.55, 0.055, 0.675, 0.19) */
+  transition: transform 4.0s cubic-bezier(0.9, 0.01, 0.9, 0.0001); /* cubic-bezier(0.55, 0.055, 0.675, 0.19) */
 }
 .zoom-image-clicked {
   transform: scale(100); /* Adjust the scale factor as needed */
@@ -54,4 +54,19 @@ body {
   justify-content: center;
     /* background-color: rgba(0, 0, 255, 0.5); /* Blue with 50% opacity */
     /* Other styles for the second overlay div */
+}
+
+#bubbleview {
+    display: none;
+    position: absolute;
+    top: 0;
+    z-index: 1100;
+    height: 100vh;
+    width: 100vw;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0);
+}
+#bubblechart {
+    width: 100%;
+    height: 100%;
 }

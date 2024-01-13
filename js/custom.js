@@ -13,14 +13,6 @@ $('.iso-box-section a').nivoLightbox({
     });
 
 function bindToButtom() {
-    const button = document.querySelectorAll('#home .btn.btn-default.btn-lg')[0]
-    button.addEventListener("click", (event)=> {
-        console.log("Button: " + this)
-        const image = document.getElementById('zoom-image')
-        image.classList.add('zoom-image-clicked');
-        const container = document.querySelectorAll('#home .overlay-div2')[0]
-        container.setAttribute("style", "display: none")
-    })
     const keys = [
         'section',
         'footer',
@@ -44,6 +36,44 @@ function bindToButtom() {
         }
         set(value)
     }
+    const button = document.querySelectorAll('#home .btn.btn-default.btn-lg')[0]
+    button.addEventListener("click", (event)=> {
+        console.log("Button: " + this)
+        const image = document.getElementById('zoom-image')
+        image.classList.add('zoom-image-clicked');
+        const keys = [
+            '#home .overlay-div2',
+            '#bubbleview' //'#nodeview' 
+        ]
+        const values = [
+            "display: none;",
+            "display: block;"
+        ]
+        const delays = [
+            0,
+            2000
+        ]
+        function activateElements(index) {
+            if (index < keys.length) {
+                const key = keys[index]
+                const newvalue = values[index]
+                const container = document.querySelectorAll(key)[0]
+                console.log(`key=${key}`)
+                changeAttribute(key, newvalue,
+                    () => {
+                        return container.getAttribute('style')
+                    },
+                    (newvalue) => {
+                        window.setTimeout(() => {
+                            container.setAttribute('style', newvalue)
+                        }, delays[index])
+                    }
+                )
+                activateElements(index + 1)
+            }
+        }
+        activateElements(0)
+    })
     function changeAttributeList(index, flag) {
         if (index < keys.length) {
             const key = keys[index] + names[index]
