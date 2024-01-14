@@ -157,7 +157,7 @@ h1 {
 }
 /* home section */  
 .tm-home {
-  background: url('../images/home-bg.jpg') no-repeat center center;
+  /* background: url('../images/home-bg.jpg') no-repeat center center; */
   background-size: cover;
   color: #ffffff;
   text-align: center;

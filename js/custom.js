@@ -49,6 +49,11 @@ function bindToButton() {
         console.log("Button: " + this)
         const image = document.getElementById('zoom-image')
         image.classList.add('zoom-image-clicked')
+        window.setTimeout(() => {
+            const zoom = document.getElementById('zoom-container')
+            image.classList.remove('fade-out')
+            zoom.classList.add('faded')
+        }, 3000)
         const keys = [
             '#home .overlay-div2',
             '#nodeview'
@@ -81,7 +86,7 @@ function bindToButton() {
                             container.setAttribute('style', newvalue)
                             window.setTimeout(() => {
                                 changeAttributeList(0, false)
-                            }, 1000)
+                            }, 2000)
                         }, delays[index])
                     }
                 )
