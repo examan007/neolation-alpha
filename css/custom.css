@@ -89,3 +89,23 @@ body {
 }
 #nodechart {
 }
+
+.hamburger-container {
+    position: fixed;
+    top: 10px; /* Adjust the top distance as needed */
+    right: 10px; /* Adjust the right distance as needed */
+    z-index: 999; /* Adjust the z-index as needed */
+}
+
+.hamburger-icon {
+    width: 30px; /* Adjust the width as needed */
+    height: 3px;
+    background-color: #a8c82f; /* Change the color as needed */
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Add styles for the icon's hover or active state if needed */
+.hamburger-icon:hover {
+    background-color: yellow; /* Change the hover color as needed */
+}
