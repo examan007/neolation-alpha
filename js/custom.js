@@ -12,7 +12,7 @@ $('.iso-box-section a').nivoLightbox({
         effect: 'fadeScale',
     });
 
-function bindToButtom() {
+function bindToButton() {
     const keys = [
         'section',
         'footer',
@@ -30,20 +30,29 @@ function bindToButtom() {
     ]
     const saved = []
     function changeAttribute(key, value, get, set) {
-        const origvalue = saved[key]
-        if (origvalue != value) {
-            saved[key] = get()
+        try {
+            const origvalue = saved[key]
+            if (origvalue != value) {
+                saved[key] = get()
+            }
+        } catch (e) {
+            console.log(e.stack)
         }
-        set(value)
+        try {
+            set(value)
+        } catch (e) {
+            console.log(e.stack)
+        }
     }
     const button = document.querySelectorAll('#home .btn.btn-default.btn-lg')[0]
     button.addEventListener("click", (event)=> {
         console.log("Button: " + this)
         const image = document.getElementById('zoom-image')
-        image.classList.add('zoom-image-clicked');
+        image.classList.add('zoom-image-clicked')
         const keys = [
             '#home .overlay-div2',
-            '#bubbleview' //'#nodeview' 
+            '#nodeview'
+//            '#bubbleview'
         ]
         const values = [
             "display: none;",
@@ -65,7 +74,14 @@ function bindToButtom() {
                     },
                     (newvalue) => {
                         window.setTimeout(() => {
+                            //const remote = document.getElementById('bubblechart')
+                            const remote = document.getElementById('nodechart')
+                            const url = remote.getAttribute('newdata')
+                            remote.setAttribute('data', url)
                             container.setAttribute('style', newvalue)
+                            window.setTimeout(() => {
+                                changeAttributeList(0, false)
+                            }, 1000)
                         }, delays[index])
                     }
                 )
@@ -73,6 +89,7 @@ function bindToButtom() {
             }
         }
         activateElements(0)
+
     })
     function changeAttributeList(index, flag) {
         if (index < keys.length) {
@@ -99,7 +116,7 @@ function bindToButtom() {
              changeAttributeList(index + 1, flag)
         }
     }
-    changeAttributeList(0, true)
+    //changeAttributeList(0, true)
 
     const section = document.getElementById('home')
     const key = 'section' + 'style'
@@ -115,13 +132,13 @@ function bindToButtom() {
 
 function scrollToTop() {
     window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0; // For modern browsers
-    document.body.scrollTop = 0; // For older browsers
+    //document.documentElement.scrollTop = 0; // For modern browsers
+    //document.body.scrollTop = 0; // For older browsersr
 }
 
 // ISOTOPE FILTER
 jQuery(document).ready(function($){
-    bindToButtom()
+    bindToButton()
     window.setTimeout(() => {
         scrollToTop()
     }, 1000)
