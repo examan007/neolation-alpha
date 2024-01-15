@@ -44,6 +44,23 @@ function bindToButton() {
             console.log(e.stack)
         }
     }
+    function injectPageDown(menu) {
+        var pageDownEvent = new KeyboardEvent('keydown', {
+          key: 'PageDown',
+          bubbles: true,
+          cancelable: true
+        })
+        menu.dispatchEvent(pageDownEvent);
+        console.log("clicked menu")
+    }
+
+    const menu = document.getElementById('home-menu')
+    menu.addEventListener("click", (event)=> {
+        window.scrollTo(0, window.scrollY + window.innerHeight);
+        //menu.setAttribute("style", "display: none;")
+        //injectPageDown(menu)
+    })
+
     const button = document.querySelectorAll('#home .btn.btn-default.btn-lg')[0]
     button.addEventListener("click", (event)=> {
         console.log("Button: " + this)
