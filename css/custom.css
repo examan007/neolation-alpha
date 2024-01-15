@@ -31,7 +31,7 @@ body {
 
 .fade-out {
   opacity: 1;
-  transition: opacity 3s ease-out; /* Adjust the duration and timing function as needed */
+  transition: opacity 1s ease-out; /* Adjust the duration and timing function as needed */
 }
 .faded {
     opacity: 0;

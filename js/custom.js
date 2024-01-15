@@ -53,7 +53,7 @@ function bindToButton() {
             const zoom = document.getElementById('zoom-container')
             image.classList.remove('fade-out')
             zoom.classList.add('faded')
-        }, 3000)
+        }, 2000)
         const keys = [
             '#home .overlay-div2',
             '#nodeview'
