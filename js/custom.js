@@ -12,6 +12,7 @@ $('.iso-box-section a').nivoLightbox({
         effect: 'fadeScale',
     });
 
+
 function bindToButton() {
     const keys = [
         'section',
@@ -60,6 +61,34 @@ function bindToButton() {
         //menu.setAttribute("style", "display: none;")
         //injectPageDown(menu)
     })
+
+    function getFormValues() {
+      var form = document.getElementById("email-form");
+      var formData = {};
+      for (var i = 0; i < form.elements.length; i++) {
+        var element = form.elements[i];
+        if ((element.tagName === "INPUT" || element.tagName === "TEXTAREA") && element.type !== "button") {
+          formData[element.name] = element.value;
+        }
+      }
+      console.log(formData);
+      const login = document.getElementById("login")
+      const url = login.getAttribute('newdata')
+      //login.setAttribute('data', url)
+      //console.log("data=" + url)
+      console.log(login.innerHTML)
+      //showLogin("login")
+
+      //Remote.getLoginWindow("showsection")
+      LoginManager().getAuthenticationCookie('#email-form')
+      //LoginManager().sendEmail()
+    }
+    const send = document.getElementById('email-form')
+     send.addEventListener("submit", (event)=> {
+         event.preventDefault();
+         console.log("send button")
+         getFormValues()
+     })
 
     const button = document.querySelectorAll('#home .btn.btn-default.btn-lg')[0]
     button.addEventListener("click", (event)=> {

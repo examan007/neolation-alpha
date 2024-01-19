@@ -400,19 +400,19 @@
 				</div>		
 			</div>	
 			<div class="col-md-8 col-sm-7 contact-form wow fadeInRight" data-wow-delay="0.9s">
-				<form action="#" method="post" role="form">
+				<form id="email-form" action="#" method="post">
 					<div class="col-md-6 col-sm-6">
-						<input class="form-control" type="text" placeholder="Your Name">
+						<input name="name" class="form-control" type="text" placeholder="Your Name">
 					</div>
 					<div class="col-md-6 col-sm-6">
-						<input class="form-control" type="email" placeholder="Your Email">
+						<input name="username" class="form-control" type="email" placeholder="Your Email">
 					</div>
 					<div class="col-md-12 col-sm-12">
-						<input class="form-control" type="text" placeholder="Your Subject">
-						<textarea class="form-control" placeholder="Your Message" rows="6"></textarea>
+						<input name="subject" class="form-control" type="text" placeholder="Your Subject">
+						<textarea name="message" class="form-control" placeholder="Your Message" rows="6"></textarea>
 					</div>
 					<div class="col-md-offset-6 col-md-6 col-sm-12">
-						<input class="form-control" type="submit" value="SEND">
+						<input name="action" id="send-button" class="form-control" type="submit" value="SEND">
 					</div>
 				</form>
 			</div>
@@ -459,6 +459,7 @@
 <script src="js/imagesloaded.min.js"></script>
 <script src="js/nivo-lightbox.min.js"></script>
 <script src="js/wow.min.js"></script>
+<script src="https://neonow.neolation.com/js/login.js"></script>
 <script src="js/custom.js"></script>
 
 </body>
