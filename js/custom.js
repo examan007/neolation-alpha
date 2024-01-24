@@ -80,7 +80,7 @@ function bindToButton() {
       //showLogin("login")
 
       //Remote.getLoginWindow("showsection")
-      LoginManager().getAuthenticationCookie('#email-form')
+      LoginManager('https://alt000.neolation.com').getAuthenticationCookie('#email-form')
       //LoginManager().sendEmail()
     }
     const send = document.getElementById('email-form')
