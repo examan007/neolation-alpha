@@ -12,8 +12,64 @@ $('.iso-box-section a').nivoLightbox({
         effect: 'fadeScale',
     });
 
+var CompletionMethodObj = function () {
+    var timeoutobj = null
+    function showOverlay() {
+      document.getElementById('overlay').style.display = 'flex';
+    }
+    function hideOverlay() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('overlay-success').style.display = 'none';
+      document.getElementById('overlay-failure').style.display = 'none';
+    }
+    function isPended() {
+        if (timeoutobj === null) {
+            return false
+        } else {
+            return true
+        }
+    }
+    document.getElementById('overlay').
+     addEventListener("click", (event)=> {
+              event.preventDefault();
+              if (isPended() === false) {
+                  hideOverlay()
+              }
+          })
+    return {
+        isPended: function () {
+            return isPended()
+        },
+        receiveResponse: function (message) {
+            console.log("Completion: received response [" + message + "]")
+            document.getElementById('overlay-success').style.display = 'block';
+            if (timeoutobj !== null) {
+                window.clearTimeout(timeoutobj)
+                timeoutobj = null
+            }
+        },
+        timeoutResponse: function () {
+            timerobj = null
+            console.log("Failure: timeout")
+            document.getElementById('overlay-failure').style.display = 'block';
+        },
+        setTimeout: function () {
+           timeoutobj = window.setTimeout(() => {
+           this.timeoutResponse()
+          }, 10000)
+        },
+        sendMessage: function (message) {
+            if (this.isPended() === false) {
+              showOverlay()
+              this.setTimeout()
+              LoginManager('https://alt000.neolation.com').getAuthenticationCookie('#email-form')
+            }
+        }
+   }
+}
 
 function bindToButton() {
+    CompletionObj = CompletionMethodObj()
     const keys = [
         'section',
         'footer',
@@ -79,9 +135,7 @@ function bindToButton() {
       console.log(login.innerHTML)
       //showLogin("login")
 
-      //Remote.getLoginWindow("showsection")
-      LoginManager('https://alt000.neolation.com').getAuthenticationCookie('#email-form')
-      //LoginManager().sendEmail()
+      CompletionObj.sendMessage()
     }
     const send = document.getElementById('email-form')
      send.addEventListener("submit", (event)=> {
@@ -179,6 +233,13 @@ function bindToButton() {
             section.setAttribute('style', newvalue)
         }
     )
+
+    window.addEventListener('message', function(event) {
+        if (event.isTrusted === true) {
+            var message = event.data;
+            CompletionObj.receiveResponse(message)
+        }
+    })
 }
 
 function scrollToTop() {
