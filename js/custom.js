@@ -12,6 +12,16 @@ $('.iso-box-section a').nivoLightbox({
         effect: 'fadeScale',
     });
 
+function isTouchScreen() {
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+        console.log('Touch device - use tap events');
+        return "Tap"
+    } else {
+        console.log('Non-touch device - use click events');
+        return "Click"
+    }
+
+}
 var CompletionMethodObj = function () {
     var timeoutobj = null
     function showOverlay() {
@@ -36,6 +46,11 @@ var CompletionMethodObj = function () {
                   hideOverlay()
               }
           })
+    document.getElementById('overlay-success').
+     textContent = "Message successfully sent. " + isTouchScreen() + " to continue."
+    document.getElementById('overlay-failure').
+     textContent = "Message NOT sent. " + isTouchScreen() + " to continue."
+
     return {
         isPended: function () {
             return isPended()

@@ -137,4 +137,5 @@ body {
 .full-screen-message {
     display: none;
     font-size: 5vh;
+    padding: 5vw;
 }
