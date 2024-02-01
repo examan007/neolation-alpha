@@ -133,6 +133,21 @@ function bindToButton() {
         //injectPageDown(menu)
     })
 
+         console.log("Almost Done bind to button!")
+
+        document.querySelectorAll('.smoothScroll').
+         forEach((element) => {
+            console.log(element.outerHTML)
+            element.addEventListener('click', (event) => {
+                console.log(element.outerHTML)
+                const href = element.getAttribute('href')
+                const newState = { page: "newpage" }
+                const newTitle = "classname" + ":" + href.slice(1)
+                const newUrl = href
+                history.pushState(newState, newTitle, newUrl)
+            })
+         })
+
     function getFormValues() {
       var form = document.getElementById("email-form");
       var formData = {};
@@ -255,6 +270,8 @@ function bindToButton() {
             CompletionObj.receiveResponse(message)
         }
     })
+
+     console.log("Done bind to button!")
 }
 
 function scrollToTop() {
@@ -357,4 +374,64 @@ jQuery(document).ready(function($){
 $(function()
 {
     new WOW().init();
-});
+})
+
+$(function(l) {
+    const serverurl = "https://demo.neolation.com"
+    if (l.protocol === 'http:') {
+      window.location.replace(serverurl);
+      return
+    }
+    console.log("pathname=[" + l.pathname + "]")
+    if (l.pathname === '/') {
+      query = window.location.href.split("?")[1]
+      function getSearchStr() {
+          const searchstr = window.location.href.split("?")[1]
+          if (typeof(searchstr) === "undefined") {
+              return ""
+          } else {
+              return "&" + searchstr
+          }
+      }
+      window.location.replace(serverurl + "/index.html" + getSearchStr());
+      return
+    }
+    console.log("href: " + window.location.href)
+    function findAnchor(hashcode) {
+      var ret = false
+      console.log("hashcode: " + hashcode)
+      if (hashcode.length > 0)
+      document.querySelectorAll('a').
+       forEach((element) => {
+        const href = element.getAttribute('href')
+        if (href === hashcode) {
+            console.log(element.outerHTML)
+            window.setTimeout(() => {
+                element.click()
+                console.log("clicked!")
+            }, 1000)
+            ret = true
+        }
+      })
+      return ret
+    }
+    function getHashCode() {
+      try {
+          const hashref = l.href.split("#")[1]
+          const hashcode = hashref.split("/")[0]
+          return "#" + hashcode
+      } catch (e) {
+        return ""
+      }
+    }
+    if (findAnchor(getHashCode()) === false)
+    if (l.search[1] === '/' ) {
+      var decoded = l.search.slice(1).split('&').map(function(s) {
+        return s.replace(/~and~/g, '&')
+      }).join('?');
+      console.log("decoded: " + decoded)
+      window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+      );
+    }
+}(window.location))
