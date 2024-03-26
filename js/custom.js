@@ -77,7 +77,7 @@ var CompletionMethodObj = function () {
             if (this.isPended() === false) {
               showOverlay()
               this.setTimeout()
-              LoginManager('https://alt000.neolation.com').getAuthenticationCookie('#email-form')
+              LoginManager('https://alt000.neolation.net').getAuthenticationCookie('#email-form')
             }
         }
    }
